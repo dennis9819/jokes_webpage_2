@@ -1,0 +1,16 @@
+version: "3"
+services:
+  jokedb:
+    image: registry.dennisgunia.de/jokedb
+    build:
+      context: ./
+      dockerfile: dockerfile
+    restart: always
+    hostname: backend
+    networks:
+      - backend
+    ports:
+      - "8080:3000"
+networks:
+  backend:
+    driver: overlay
