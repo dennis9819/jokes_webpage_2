@@ -127,27 +127,74 @@ $('.cmd-like').click(function() {
 		likelist = likelist.filter(el => el !== jokeClass.cur_joke.id);
 	}
 	console.log(likelist)
+	
 });
 
+$('.cmd-likes').click(function() {
+	renderFavList();
+	$('.popup-bg-likes').fadeIn('fast');
+});
 
+$('.cmd-close-likes').click(function() {
+	$('.popup-bg-likes').fadeOut('fast');
+	
+});
+
+async function renderFavList (){
+	let html = "";
+	for (let i = 0; i < likelist.length  ; i++){
+		let joke = await jokeClass.get(likelist[i]);
+		console.log(joke)
+		html += renderFavJoke(joke);
+	}
+	$("#favList").html(html)
+	for (let i = 0; i < likelist.length  ; i++){
+		$(`#like-remove-${likelist[i]}`).click(function() {
+			$(`#liked-joke-${likelist[i]}`).fadeOut('fast');
+			likelist = likelist.filter(el => el !== likelist[i]);
+			renderFavList();
+		});
+	}
+}
+
+function renderFavJoke(joke){
+	let template = $("#j-template").html();
+	template = template.replace("{{category}}",joke.category)
+	template = template.replace("{{author}}",joke.author)
+	template = template.replace("{{text}}",joke.text)
+	template = template.replace("{{id}}",joke.id)
+	const final = (`<div class="liked-joke" id="liked-joke-${joke.id}">${template}</div>`)
+	return final;
+}
 
 // ANiMATION
 
 let anim_rows = 50;
 $( document ).ready(function() {
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+	$('.popup-bg-likes').hide()
 	// randomize theme
-	theme = Math.round(Math.random()*2);
-	$("#gradient-fill").addClass(`bg-fill-s${theme + 1}`);
+	theme = Math.round(Math.random()*5);
+	if (theme < 3){
+		$("#gradient-fill").addClass(`bg-fill-s${theme + 1}`);
 	
-	anim_rows= (window.innerWidth / 68 ) + (window.innerHeight / 68);
-	generateBackground(anim_rows);
+		anim_rows= (window.innerWidth / 68 ) + (window.innerHeight / 68);
+		generateBackground(anim_rows);
+	}else if(theme > 2){
+		$(".background").append("<div id='particles-js'></div>")
+		particlesJS.load('particles-js', `particles_${theme - 2}.json`, function() { });
+		$("#particles-js").addClass(`particles-js${theme - 2}`);
+	}
+	
 	try {
 		const tmp = JSON.parse($.cookie("score"));
 		humor = tmp.humor;
 		likelist = tmp.likes;
 	}catch{ }
 	printHumor();
-
+	
 	const reqJoke = $.urlParam('wid');
 	console.log(reqJoke)
 	if (reqJoke){
@@ -155,6 +202,7 @@ $( document ).ready(function() {
 	}else{
 		getWitz();
 	}
+	
 	$('#wasted').text(Math.floor((new Date - start) / 1000)  + " Sekunden");
 });
 
@@ -163,7 +211,10 @@ $( document ).ready(function() {
 $(window).on('resize', function(){
       var win = $(this); //this = window
 	  anim_rows= (win.width() / 68) + (win.height() / 68);
-	  generateBackground(anim_rows);
+	  if (theme < 3){
+		generateBackground(anim_rows);
+	  }
+	  
 });
 
 $(window).on("unload", function(e) {

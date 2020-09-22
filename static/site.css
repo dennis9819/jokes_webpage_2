@@ -230,3 +230,145 @@ body {
 		
 	}
 }
+
+.bot-bar{
+	position: absolute;
+	bottom: 5rem;
+	right: 1rem;
+	overflow-wrap: break-word;
+}
+
+.bot-bar-item {
+	fill: white;
+	-webkit-filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .7));
+	filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .7));
+}
+
+.bot-bar-item > svg > .fill {
+	fill: transparent;
+	transition: 0.2s linear;
+	cursor: pointer;
+}
+
+.bot-bar-item:hover > svg > .fill {
+	fill: white
+}
+
+.bot-bar-item > svg > .def {
+	fill: white;
+	transition: 0.2s linear;
+	cursor: pointer;
+}
+
+.bot-bar-item:hover > svg > .def {
+	fill: transparent
+}
+.popup-bg-likes-hide {
+	visibility: hidden;
+}
+
+.popup-bg-likes {
+	background-color:rgba(0,0,0,0.5);
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	z-index: 20;
+	display: flex;
+	justify-content: center ;
+	align-items: center;
+	transition: 1s linear;
+}
+
+
+
+.cmd-close-likes {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+.liked-joke{
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid rgba(0,0,0,.125);
+	padding: 1rem 1.25rem 0 1.25rem;
+	border-radius: .25rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+}
+
+.liked-joke-like {
+	padding-left: 1rem;
+}
+.unlike > svg {
+	fill: red;
+	color: red;
+}
+.template {
+	display: none;
+}
+
+.popup-bg-likes-content {
+	position: relative;
+	background-color:rgba(0,0,0,0.5);
+	color: black;
+	border: solid 1px white;
+	border-radius: .25rem;
+	padding: 1.25rem;
+	width: fit-content;
+	max-height: 90%;
+	max-width: 90%;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+}
+
+.liked-joke-header{
+	flex-basis: auto;
+  	flex-grow: 0;
+	flex-shrink: 0;
+	color: white;
+}
+.liked-joke-list {
+	min-height: 0px;
+	min-width: 0px;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: auto;
+	overflow: auto;
+}
+
+
+.particles-js1{
+	width: 100%;
+	height: 100%;
+	background-color: #6678ff;
+	background-image: url('');
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+  }
+
+.particles-js2{
+	width: 100%;
+	height: 100%;
+	background-color:  rgb(44, 46, 67);
+	background-image: url('');
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+  }
+
+.particles-js3{
+	width: 100%;
+	height: 100%;
+	background-color: rgb(44, 46, 67);
+	background-image: url('');
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+  }
