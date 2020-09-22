@@ -1,7 +1,7 @@
-# Awesome Project Build with TypeORM
+# My new Jokes-Webpage
+This is version 2 of my Jokes-Webpage.
 
-Steps to run this project:
-
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+Major upgrades:
+- Database enabled
+- Dynamic backgrounds
+- REST-API
